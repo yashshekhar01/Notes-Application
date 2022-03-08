@@ -1,10 +1,6 @@
 // const chalk = require('chalk')
-// const validator = require('validator')
-const Argv = require('yargs')
 const yargs = require('yargs')
-const getNotes = require('./notes.js')
-
-// const command = process.argv[2]
+const notes = require('./notes.js')
 
 // Customize yargs version
 yargs.version('1.1.0')
@@ -25,9 +21,8 @@ yargs.command({
             type: 'string'
         }
     },
-    handler: function(argv){
-        console.log('Title: ' + argv.title)
-        console.log('Body: ' + argv.body)
+    handler: function (argv) {
+        notes.addNote(argv.title, argv.body)
     }
 })
 
@@ -35,8 +30,8 @@ yargs.command({
 yargs.command({
     command: 'remove',
     describe: 'Remove a note',
-    handler: function(){
-        console.log('Removing the note!')
+    handler: function () {
+        console.log('Removing the note')
     }
 })
 
@@ -44,8 +39,8 @@ yargs.command({
 yargs.command({
     command: 'list',
     describe: 'List your notes',
-    handler: function(){
-        console.log('Listing out all notes!')
+    handler: function () {
+        console.log('Listing out all notes')
     }
 })
 
@@ -53,20 +48,9 @@ yargs.command({
 yargs.command({
     command: 'read',
     describe: 'Read a note',
-    handler: function(){
-        console.log('Reading a note!')
+    handler: function () {
+        console.log('Reading a note')
     }
 })
 
-
-// add, remove, read, list
-
-// console.log(process.argv)
-
-yargs.parse();
-
-// if (command === 'add') {
-//     console.log('Adding note!')
-// } else if (command === 'remove') {
-//     console.log('Removing note!')
-// }
+yargs.parse()
